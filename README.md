@@ -26,5 +26,5 @@ An interactive, dark-themed Power BI dashboard designed for educational institut
 
 
 ## 👥 Credits
-* **Data & DAX Development:** [Valerii Roznalievich(https://www.linkedin.com/in/valerii-roznalievich-data/)]
-* **UI/UX Design:** [Yana Yakub(https://www.linkedin.com/in/yana-yakub/)]
+* **Data & DAX Development:** Valerii Roznalievich / (https://www.linkedin.com/in/valerii-roznalievich-data/)
+* **UI/UX Design:** Yana Yakub / (https://www.linkedin.com/in/yana-yakub/)
