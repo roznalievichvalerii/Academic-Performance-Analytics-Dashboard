@@ -14,12 +14,17 @@ An interactive, dark-themed Power BI dashboard designed for educational institut
 3. **Class Performance:** Deep-dive into class statistics, breakdown of grade categories (Homework, Exams, Quizzes, Projects), and tracking of negative grade ratios.
 4. **Class Details:** Granular row-level view showcasing individual student progress across all assessment types.
 
-## 🛠️ Tech Stack & Architecture
-* **BI Tool:** Power BI Desktop (Project format `.pbip`)
-* **Data Modeling:** Star Schema (Fact table linked with Dim_Students, Dim_Calendar, Dim_Classes, Dim_Subjects)
-* **UX/UI:** Premium Dark Theme, custom horizontal tab navigation, and responsive tooltips.
-* **Advanced DAX Formulas:** Custom Time Intelligence measures built manually to handle specific school periods, bypassing standard calendar constraints.
+## 🛠️ Tech Stack & Collaboration
+* **Data Engineering & Analytics (My Role):** Built the entire data model (Star Schema), established table relationships, and developed all analytical metrics using advanced DAX (manual YTD, MoM shifts, and forecasting logic).
+* **UI/UX Design:** Developed by my partner. She designed the premium dark theme layout, custom horizontal tab navigation, and visual hierarchy to ensure a clean user experience.
+* **BI Tool:** Power BI Desktop (Project format `.pbip`).
+
 
 ## 🚀 How to Run
 1. Clone this repository.
 2. Open the `academic performance.pbip` file using Power BI Desktop.
+
+
+## 👥 Credits
+* **Data & DAX Development:** [Valerii Roznalievich]/[GitHub Link](https://www.linkedin.com/in/valerii-roznalievich-data/)]
+* **UI/UX Design:** [Yana Yakub]/[LinkedIn/Behance link if she has one](https://www.linkedin.com/in/yana-yakub/)]
