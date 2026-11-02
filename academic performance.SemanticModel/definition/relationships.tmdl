@@ -1,0 +1,49 @@
+relationship 90be289c-62f5-4f4a-bd6d-c454d33d33f7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: students.birth_date
+	toColumn: LocalDateTable_34069e86-8901-4cf4-ac2d-945655a2f172.Date
+
+relationship 308995d8-2188-4507-b9cc-f276b9800413
+	joinOnDateBehavior: datePartOnly
+	fromColumn: teachers.hire_date
+	toColumn: LocalDateTable_68d669f8-7427-436d-9194-ea286eb92858.Date
+
+relationship 708fdd4b-936e-435e-9ca3-5b7b82a5e7f6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: periods.start_date
+	toColumn: LocalDateTable_724f6a61-2b0d-450a-af67-3871e583ac66.Date
+
+relationship 3621a734-6bfe-4e21-96c5-c77d05d70367
+	joinOnDateBehavior: datePartOnly
+	fromColumn: periods.end_date
+	toColumn: LocalDateTable_60651b03-1fcf-4284-acb3-8d6d20f01eca.Date
+
+relationship AutoDetected_52f325e0-5ef3-4308-a014-71ac0180f3ce
+	fromColumn: grades.student_id
+	toColumn: students.student_id
+
+relationship AutoDetected_24bbd850-399b-42ba-91d9-772ca80fcf8b
+	fromColumn: students.class_id
+	toColumn: classes.class_id
+
+relationship AutoDetected_a52a50c9-31b6-4393-bf6e-1bc2f849b70b
+	fromColumn: grades.teacher_id
+	toColumn: teachers.teacher_id
+
+relationship AutoDetected_3cb97c12-90af-400b-8677-97082af810b9
+	fromColumn: grades.subject_id
+	toColumn: subjects.subject_id
+
+relationship AutoDetected_05c7083a-d750-4d3b-8054-e098660a38a8
+	fromColumn: grades.period_id
+	toColumn: periods.period_id
+
+relationship dea8c6e7-f9f8-4103-bba4-6434d3762fc7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_6174510d-799f-4e85-886b-4c14425af65d.Date
+
+relationship 30d8efb8-6048-6716-b9ef-fbf22eb6b727
+	fromColumn: grades.grade_date
+	toColumn: Calendar.Date
+

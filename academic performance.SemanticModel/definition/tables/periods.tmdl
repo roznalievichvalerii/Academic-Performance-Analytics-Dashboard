@@ -1,0 +1,86 @@
+table periods
+	lineageTag: 19b49493-e881-42cd-b169-a47d9a9470eb
+
+	column period_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 7dcdc14b-9201-402a-84bb-f4e6090262f4
+		summarizeBy: none
+		sourceColumn: period_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column academic_year
+		dataType: string
+		lineageTag: fd7b3deb-795b-4520-99e6-a3a4703f4712
+		summarizeBy: none
+		sourceColumn: academic_year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column term
+		dataType: string
+		lineageTag: 2726e6be-2b68-41bd-945d-353bb62dc6cc
+		summarizeBy: none
+		sourceColumn: term
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fb9662bd-42ba-4939-a2b6-7afdb16a08c2
+		summarizeBy: none
+		sourceColumn: start_date
+
+		variation Variation
+			isDefault
+			relationship: 708fdd4b-936e-435e-9ca3-5b7b82a5e7f6
+			defaultHierarchy: LocalDateTable_724f6a61-2b0d-450a-af67-3871e583ac66.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7004f4aa-7b15-4030-b358-00ecb69ea0c3
+		summarizeBy: none
+		sourceColumn: end_date
+
+		variation Variation
+			isDefault
+			relationship: 3621a734-6bfe-4e21-96c5-c77d05d70367
+			defaultHierarchy: LocalDateTable_60651b03-1fcf-4284-acb3-8d6d20f01eca.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition periods = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Valerii Roznalievich\Downloads\periods.csv"),[Delimiter=",", Columns=5, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"period_id", Int64.Type}, {"academic_year", type text}, {"term", type text}, {"start_date", type date}, {"end_date", type text}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Changed Type", {{"start_date", type date}}, "en-US"),
+				    #"Changed Type with Locale1" = Table.TransformColumnTypes(#"Changed Type with Locale", {{"end_date", type date}}, "en-US")
+				in
+				    #"Changed Type with Locale1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

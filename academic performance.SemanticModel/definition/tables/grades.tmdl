@@ -1,0 +1,108 @@
+table grades
+	lineageTag: 9f66e70f-2574-454d-9f03-d42bcc11e2a9
+
+	column grade_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8bd59ce3-9688-4ffc-9782-55cad58d0662
+		summarizeBy: sum
+		sourceColumn: grade_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column student_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f1d743a0-f2f8-4d13-b8f3-f490402f897d
+		summarizeBy: none
+		sourceColumn: student_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column subject_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c58a0b41-5af2-486f-a3a6-6ed5e22a5751
+		summarizeBy: none
+		sourceColumn: subject_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column teacher_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1cdf8b5e-86cf-4dbb-82b9-1f6728f8b49e
+		summarizeBy: none
+		sourceColumn: teacher_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column period_id
+		dataType: int64
+		formatString: 0
+		lineageTag: ce26967e-fff4-429c-8cb0-f95ca7ec56b6
+		summarizeBy: none
+		sourceColumn: period_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column grade_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 63e15b87-a3af-4c04-8ddb-50768f5462a6
+		summarizeBy: none
+		sourceColumn: grade_date
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column grade_value
+		dataType: int64
+		formatString: 0
+		lineageTag: 85f7be42-01a8-45f8-b2af-2e5b787de7a8
+		summarizeBy: sum
+		sourceColumn: grade_value
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column grade_type
+		dataType: string
+		lineageTag: 92ae888d-f498-4684-8c70-09f769ace242
+		summarizeBy: none
+		sourceColumn: grade_type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition grades = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Valerii Roznalievich\Downloads\grades.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"grade_id", Int64.Type}, {"student_id", Int64.Type}, {"subject_id", Int64.Type}, {"teacher_id", Int64.Type}, {"period_id", Int64.Type}, {"grade_date", type date}, {"grade_value", Int64.Type}, {"grade_type", type text}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Changed Type", {{"grade_date", type date}}, "en-US"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type with Locale",{{"grade_value", Int64.Type}, {"grade_type", type text}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,195 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ba2697b087a37b8726c0",
+  "displayName": "Academic Performance Overview",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fffad1c2c621e586f6ed",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Calendar"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Calendar",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "Year"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "2024L"
+                        }
+                      }
+                    ],
+                    [
+                      {
+                        "Literal": {
+                          "Value": "2025L"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "c1efb010c8927bb9bd8d",
+      "target": "4c841ca79f48311b2f8a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c1efb010c8927bb9bd8d",
+      "target": "095ea6cf9f0f34e0a971",
+      "type": "NoFilter"
+    },
+    {
+      "source": "c1efb010c8927bb9bd8d",
+      "target": "9a1a8857f829894afed4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4c841ca79f48311b2f8a",
+      "target": "c1efb010c8927bb9bd8d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4c841ca79f48311b2f8a",
+      "target": "095ea6cf9f0f34e0a971",
+      "type": "NoFilter"
+    },
+    {
+      "source": "4c841ca79f48311b2f8a",
+      "target": "9a1a8857f829894afed4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "095ea6cf9f0f34e0a971",
+      "target": "c1efb010c8927bb9bd8d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "095ea6cf9f0f34e0a971",
+      "target": "4c841ca79f48311b2f8a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "095ea6cf9f0f34e0a971",
+      "target": "9a1a8857f829894afed4",
+      "type": "NoFilter"
+    },
+    {
+      "source": "28a3052aa55cf99f204c",
+      "target": "c1efb010c8927bb9bd8d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "28a3052aa55cf99f204c",
+      "target": "4c841ca79f48311b2f8a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "28a3052aa55cf99f204c",
+      "target": "095ea6cf9f0f34e0a971",
+      "type": "NoFilter"
+    },
+    {
+      "source": "9a1a8857f829894afed4",
+      "target": "c1efb010c8927bb9bd8d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "9a1a8857f829894afed4",
+      "target": "4c841ca79f48311b2f8a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "9a1a8857f829894afed4",
+      "target": "095ea6cf9f0f34e0a971",
+      "type": "NoFilter"
+    },
+    {
+      "source": "9a1a8857f829894afed4",
+      "target": "28a3052aa55cf99f204c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2110a5dee45d76f8a839",
+      "target": "c1efb010c8927bb9bd8d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2110a5dee45d76f8a839",
+      "target": "4c841ca79f48311b2f8a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2110a5dee45d76f8a839",
+      "target": "095ea6cf9f0f34e0a971",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2110a5dee45d76f8a839",
+      "target": "28a3052aa55cf99f204c",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f8f3c57f2c16241cebd8",
+      "target": "c1efb010c8927bb9bd8d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f8f3c57f2c16241cebd8",
+      "target": "4c841ca79f48311b2f8a",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f8f3c57f2c16241cebd8",
+      "target": "095ea6cf9f0f34e0a971",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f8f3c57f2c16241cebd8",
+      "target": "28a3052aa55cf99f204c",
+      "type": "NoFilter"
+    }
+  ]
+}

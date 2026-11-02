@@ -1,0 +1,80 @@
+table classes
+	lineageTag: deff724e-bea0-4641-a822-707ffe9fdd17
+
+	column class_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e43edeb0-a6f6-4ddb-89a1-5aa5fe247cfe
+		summarizeBy: none
+		sourceColumn: class_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column class_code
+		dataType: string
+		lineageTag: 2b247b67-8d66-4ca9-a8fd-af506ce40f48
+		summarizeBy: none
+		sourceColumn: class_code
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column grade_level
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bb5cc72-045c-4f96-b110-bd76e1042979
+		summarizeBy: none
+		sourceColumn: grade_level
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column section
+		dataType: string
+		lineageTag: dee58378-d205-4204-b71c-93f3e3b8a81a
+		summarizeBy: none
+		sourceColumn: section
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column class_name
+		dataType: string
+		lineageTag: b78dc272-28d7-49cc-9028-735cca3bf4d0
+		summarizeBy: none
+		sourceColumn: class_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column class_teacher_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 37c55f27-de44-48e3-83cd-678cfa5b4fd3
+		summarizeBy: none
+		sourceColumn: class_teacher_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition classes = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Valerii Roznalievich\Downloads\classes.csv"),[Delimiter=",", Columns=6, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"class_id", Int64.Type}, {"class_code", type text}, {"grade_level", Int64.Type}, {"section", type text}, {"class_name", type text}, {"class_teacher_id", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

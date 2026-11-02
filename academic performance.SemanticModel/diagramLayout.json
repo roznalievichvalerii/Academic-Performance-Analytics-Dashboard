@@ -1,0 +1,125 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 437.86073335766,
+        "y": 342.3968906347165
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 437.98938181888172,
+            "y": 930.70045804967845
+          },
+          "nodeIndex": "classes",
+          "nodeLineageTag": "deff724e-bea0-4641-a822-707ffe9fdd17",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 443.83922121761009,
+            "y": 264.24765512263929
+          },
+          "nodeIndex": "grades",
+          "nodeLineageTag": "9f66e70f-2574-454d-9f03-d42bcc11e2a9",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 440.21890375950522,
+            "y": 1193.6368840786365
+          },
+          "nodeIndex": "periods",
+          "nodeLineageTag": "19b49493-e881-42cd-b169-a47d9a9470eb",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 437.98938181888161,
+            "y": 579.59425298692406
+          },
+          "nodeIndex": "students",
+          "nodeLineageTag": "58a3927e-83ef-48b7-88f0-a88e524ffe89",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 755.07935870488336,
+            "y": 262.40518654191516
+          },
+          "nodeIndex": "subjects",
+          "nodeLineageTag": "68df03e9-0f7f-4e0d-a541-a4116bdbf212",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 104.3615533935841,
+            "y": 266.06669242401182
+          },
+          "nodeIndex": "teachers",
+          "nodeLineageTag": "77fd50f1-2402-460a-a308-59677b8083f4",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 445.60735465773325,
+            "y": 0
+          },
+          "nodeIndex": "Calendar",
+          "nodeLineageTag": "85376760-8443-4610-9f3b-87f376549a75",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 934.71780531129923,
+            "y": 596.81844203931826
+          },
+          "nodeIndex": "_Measures",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 125.70207430874521,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

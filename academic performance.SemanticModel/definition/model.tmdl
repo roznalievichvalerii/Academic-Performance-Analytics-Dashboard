@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-FK
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["students","classes","teachers","subjects","periods","grades"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table students
+ref table DateTableTemplate_87047d68-46ac-4e2b-9016-92c9e1068796
+ref table LocalDateTable_34069e86-8901-4cf4-ac2d-945655a2f172
+ref table classes
+ref table teachers
+ref table LocalDateTable_68d669f8-7427-436d-9194-ea286eb92858
+ref table subjects
+ref table periods
+ref table LocalDateTable_724f6a61-2b0d-450a-af67-3871e583ac66
+ref table LocalDateTable_60651b03-1fcf-4284-acb3-8d6d20f01eca
+ref table grades
+ref table Calendar
+ref table LocalDateTable_6174510d-799f-4e85-886b-4c14425af65d
+ref table _Measures
+
+ref cultureInfo en-US
+

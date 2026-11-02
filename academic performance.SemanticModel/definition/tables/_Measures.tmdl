@@ -1,0 +1,201 @@
+table _Measures
+	isHidden
+	lineageTag: 639f848b-bd4c-4456-a071-12b87e7a9a92
+
+	measure 'Average Grade' = ```
+			
+			CALCULATE(
+			    AVERAGE(grades[grade_value]),
+			    REMOVEFILTERS(grades[grade_type])
+			)
+			
+			```
+		lineageTag: 1b9d61d3-dd56-4be9-887a-9995f4108291
+
+		changedProperty = IsHidden
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Exam Average Grade' =
+			
+			ROUND(
+			    CALCULATE(
+			        AVERAGE('grades'[grade_value]),
+			        'grades'[grade_type] = "Exam"
+			    ),
+			    2
+			)
+		formatString: 0.00
+		lineageTag: e5dfd87c-16b1-4f6f-8301-fb294e06f8f9
+
+		changedProperty = IsHidden
+
+	measure 'Homework Average Grade' =
+			
+			ROUND(
+			    CALCULATE(
+			        AVERAGE('grades'[grade_value]),
+			        'grades'[grade_type] = "Homework"
+			    ),
+			    2
+			)
+		formatString: 0.00
+		lineageTag: f5f19366-7c14-4831-90f2-9fcb8de477e9
+
+		changedProperty = IsHidden
+
+	measure 'Test Average Grade' =
+			
+			ROUND(
+			    CALCULATE(
+			        AVERAGE('grades'[grade_value]),
+			        'grades'[grade_type] = "Test"
+			    ),
+			    2
+			)
+		formatString: 0.00
+		lineageTag: f63b2ca6-a325-44aa-8c5e-f00600494d33
+
+		changedProperty = IsHidden
+
+	measure 'Project Average Grade' =
+			
+			ROUND(
+			    CALCULATE(
+			        AVERAGE('grades'[grade_value]),
+			        'grades'[grade_type] = "Project"
+			    ),
+			    2
+			)
+		formatString: 0.00
+		lineageTag: 350c34fb-1363-436e-b656-26fc210999eb
+
+	measure 'Quiz Average Grade' =
+			
+			ROUND(
+			    CALCULATE(
+			        AVERAGE('grades'[grade_value]),
+			        'grades'[grade_type] = "Quiz"
+			    ),
+			    2
+			)
+		formatString: 0.00
+		lineageTag: 2560ab16-c325-48ee-9cd3-c0d02694a78f
+
+	measure 'Negative Grades' =
+			
+			CALCULATE(
+			    COUNT(grades[grade_value]),
+			    grades[grade_value] < 6
+			)
+		formatString: 0
+		lineageTag: d82abdac-cc51-469c-9125-53dfaf750296
+
+	measure 'Total Grades' =
+			
+			COUNT(grades[grade_value])
+		formatString: 0
+		lineageTag: 5ce9c17d-99bf-42e2-94f3-245c8dc6d08c
+
+	measure 'Negative Grades %' =
+			
+			DIVIDE(
+			    [Negative Grades],
+			    [Total Grades],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6f73b5ca-1f7e-490f-b927-7fc44f098a93
+
+	measure 'Previous Grade' =
+			
+			CALCULATE(
+			    [Average Grade],
+			    DATEADD('calendar'[Date], -1, MONTH)
+			)
+		lineageTag: ca880b9a-6077-42e7-b55e-9fc0217feccf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MoM_AG% =
+			
+			DIVIDE(
+			    [Average Grade] - [Previous Grade],
+			    [Previous Grade]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bb483c5d-f951-4cc7-8b35-2cbab861b628
+
+	measure 'All Type Grades' =
+			
+			CALCULATE(
+			    [Total Grades],
+			    REMOVEFILTERS(grades[grade_type])
+			)
+		formatString: 0
+		lineageTag: c6144f75-fd8d-4e63-9e5d-9f4c5e8e885f
+
+	measure 'Global Grades Count' =
+			
+			CALCULATE(
+			    [Total Grades],
+			    ALL(grades)
+			)
+		formatString: 0
+		lineageTag: 226e3353-3c64-4cd1-a225-6ae476cf351f
+
+	measure YTD_Quick =
+			
+			TOTALYTD(
+			    [Average Grade],
+			    'Calendar'[Date]
+			)
+		lineageTag: 92106383-0b89-4c3b-b8b4-dcd60fbb1654
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "YearToDate"
+				}
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure YTD_Manual =
+			
+			TOTALYTD(
+			    [Average Grade],
+			    'Calendar'[Date]
+			)
+		lineageTag: e31ee12f-755c-4220-b4dd-e597766cf128
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure MoM_Difference =
+			
+			[Average Grade] -
+			CALCULATE(
+			    [Average Grade],
+			    DATEADD('Calendar'[Date], -1, MONTH)
+			)
+		lineageTag: 00f1c189-3bdc-439d-b3be-4f5133d1d18a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Measure
+		isHidden
+		lineageTag: c12d27ad-2893-4d1e-8eb8-402746bb6399
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Measure]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Measures = calculated
+		mode: import
+		source = ```
+				DATATABLE("Measure", STRING, {{"Measures"}})
+				
+				```
+
+	annotation PBI_Id = 48fe0f5875934358a13748ea857943db
+

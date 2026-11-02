@@ -1,0 +1,152 @@
+table students
+	lineageTag: 58a3927e-83ef-48b7-88f0-a88e524ffe89
+
+	column student_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ba7ea9a-350e-4048-a9b5-c5a791b0c144
+		summarizeBy: none
+		sourceColumn: student_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column student_name
+		dataType: string
+		lineageTag: 7a5079d3-87d4-4f3d-bb4c-4fc07f637f63
+		summarizeBy: none
+		sourceColumn: student_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 9e261e3d-6834-420c-b9aa-4db48224061a
+		summarizeBy: none
+		sourceColumn: gender
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column birth_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: da66c6e8-7bb9-40b9-8ecc-3a5e2cbab19d
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		variation Variation
+			isDefault
+			relationship: 90be289c-62f5-4f4a-bd6d-c454d33d33f7
+			defaultHierarchy: LocalDateTable_34069e86-8901-4cf4-ac2d-945655a2f172.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column class_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d2497f2c-cfd9-43d7-a5ce-8e9a54da9ead
+		summarizeBy: none
+		sourceColumn: class_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column enrollment_year
+		dataType: int64
+		formatString: 0
+		lineageTag: b2256b27-5297-41c8-8ab3-e6b9fae7562a
+		summarizeBy: sum
+		sourceColumn: enrollment_year
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 15a7b4a6-f69b-41e7-96e7-c7c427b46f33
+		summarizeBy: none
+		sourceColumn: is_active
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column address
+		dataType: string
+		lineageTag: 012a6e3f-a3c2-47df-9052-740affdb313e
+		summarizeBy: none
+		sourceColumn: address
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column city
+		dataType: string
+		lineageTag: 96e30400-6358-4909-8969-cff8bcc4d453
+		summarizeBy: none
+		sourceColumn: city
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column state
+		dataType: string
+		lineageTag: e43e1ef2-b172-4bbf-820b-05e3410a29ae
+		summarizeBy: none
+		sourceColumn: state
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column zip_code
+		dataType: int64
+		formatString: 0
+		lineageTag: 8dd575c2-3e53-4c82-bc9c-a5bfb345ad35
+		summarizeBy: sum
+		sourceColumn: zip_code
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 25e2ebe7-015a-4674-8fef-dfd4513634cc
+		summarizeBy: none
+		sourceColumn: email
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition students = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Valerii Roznalievich\Downloads\students.csv"),[Delimiter=",", Columns=12, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"student_id", Int64.Type}, {"student_name", type text}, {"gender", type text}, {"birth_date", type text}, {"class_id", Int64.Type}, {"enrollment_year", Int64.Type}, {"is_active", type logical}, {"address", type text}, {"city", type text}, {"state", type text}, {"zip_code", Int64.Type}, {"email", type text}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Changed Type", {{"birth_date", type date}}, "en-US"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type with Locale",{{"class_id", Int64.Type}, {"enrollment_year", Int64.Type}, {"is_active", type logical}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

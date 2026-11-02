@@ -1,0 +1,67 @@
+table teachers
+	lineageTag: 77fd50f1-2402-460a-a308-59677b8083f4
+
+	column teacher_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f77b4a3b-3657-4ee4-bb5b-41f9d6e9099e
+		summarizeBy: none
+		sourceColumn: teacher_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column teacher_name
+		dataType: string
+		lineageTag: f9da685f-2131-48e3-9004-889749870523
+		summarizeBy: none
+		sourceColumn: teacher_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column hire_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a09e6216-2170-4810-8fb1-ecee2faf2869
+		summarizeBy: none
+		sourceColumn: hire_date
+
+		variation Variation
+			isDefault
+			relationship: 308995d8-2188-4507-b9cc-f276b9800413
+			defaultHierarchy: LocalDateTable_68d669f8-7427-436d-9194-ea286eb92858.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column department
+		dataType: string
+		lineageTag: bd899b23-bf64-4158-b966-2faeac78b237
+		summarizeBy: none
+		sourceColumn: department
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition teachers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Valerii Roznalievich\Downloads\teachers.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"teacher_id", Int64.Type}, {"teacher_name", type text}, {"hire_date", type text}, {"department", type text}}),
+				    #"Changed Type with Locale" = Table.TransformColumnTypes(#"Changed Type", {{"hire_date", type date}}, "en-US")
+				in
+				    #"Changed Type with Locale"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,58 @@
+table subjects
+	lineageTag: 68df03e9-0f7f-4e0d-a541-a4116bdbf212
+
+	column subject_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8df6f4e0-3f5b-4d80-9e68-f48e71ab709f
+		summarizeBy: none
+		sourceColumn: subject_id
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column subject_name
+		dataType: string
+		lineageTag: 42bca3b4-a647-4e30-aa24-1b60d40c6bfd
+		summarizeBy: none
+		sourceColumn: subject_name
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column subject_type
+		dataType: string
+		lineageTag: 83d9b3ce-cca3-4f4f-a498-a9fd140dab44
+		summarizeBy: none
+		sourceColumn: subject_type
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column department_hint
+		dataType: string
+		lineageTag: b804a113-8947-4c8c-9515-5e31e3d9d79b
+		summarizeBy: none
+		sourceColumn: department_hint
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition subjects = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Valerii Roznalievich\Downloads\subjects.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"subject_id", Int64.Type}, {"subject_name", type text}, {"subject_type", type text}, {"department_hint", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
